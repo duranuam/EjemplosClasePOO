@@ -129,12 +129,22 @@ public class FrmPersona extends javax.swing.JFrame {
         jBtnAnterior.setFocusable(false);
         jBtnAnterior.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnAnterior.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAnteriorActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnAnterior);
 
         jBtnSiguiente.setText(">>");
         jBtnSiguiente.setFocusable(false);
         jBtnSiguiente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnSiguiente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSiguienteActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnSiguiente);
 
         jBtnUltimo.setText(">|");
@@ -317,6 +327,62 @@ public class FrmPersona extends javax.swing.JFrame {
                     "Registros", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBtnUltimoActionPerformed
+
+    private void jBtnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAnteriorActionPerformed
+        // TODO add your handling code here:
+        if(!dP.getListPersona().isEmpty()){
+            try {
+                pos--;
+                if (pos < 0) pos = dP.getListPersona().size()-1;
+                int id = dP.getListPersona().get(pos).getId();
+                String nom = dP.getListPersona().get(pos).getNombre();
+                String ape = dP.getListPersona().get(pos).getApellidos();
+                String ema = dP.getListPersona().get(pos).getEmail();
+                Sexo sex = dP.getListPersona().get(pos).getSexo();
+                jTfId.setText(""+id);
+                jTfNombres.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                if(sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay registros...",
+                    "Registros", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnAnteriorActionPerformed
+
+    private void jBtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSiguienteActionPerformed
+        // TODO add your handling code here:
+        if(!dP.getListPersona().isEmpty()){
+            try {
+                pos ++;
+                if(pos == dP.getListPersona().size()) pos = 0;
+                int id = dP.getListPersona().get(pos).getId();
+                String nom = dP.getListPersona().get(pos).getNombre();
+                String ape = dP.getListPersona().get(pos).getApellidos();
+                String ema = dP.getListPersona().get(pos).getEmail();
+                Sexo sex = dP.getListPersona().get(pos).getSexo();
+                jTfId.setText(""+id);
+                jTfNombres.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                if(sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay registros...",
+                    "Registros", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnSiguienteActionPerformed
 
     private void llenarTabla() {
         DefaultTableModel tbl = new DefaultTableModel();
