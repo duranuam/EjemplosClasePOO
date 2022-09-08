@@ -16,6 +16,7 @@ import modelos.Sexo;
 public class FrmPersona extends javax.swing.JFrame {
 
     DPersona dP = new DPersona();
+    private int pos = 0;
 
     /**
      * Creates new form FrmPersona
@@ -140,6 +141,11 @@ public class FrmPersona extends javax.swing.JFrame {
         jBtnUltimo.setFocusable(false);
         jBtnUltimo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnUltimo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnUltimoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnUltimo);
 
         jTblRegistros.setModel(new javax.swing.table.DefaultTableModel(
@@ -262,11 +268,12 @@ public class FrmPersona extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!dP.getListPersona().isEmpty()) {
             try {
-                int id = dP.getListPersona().get(0).getId();
-                String nom = dP.getListPersona().get(0).getNombre();
-                String ape = dP.getListPersona().get(0).getApellidos();
-                String ema = dP.getListPersona().get(0).getEmail();
-                Sexo sex = dP.getListPersona().get(0).getSexo();
+                pos = 0;
+                int id = dP.getListPersona().get(pos).getId();
+                String nom = dP.getListPersona().get(pos).getNombre();
+                String ape = dP.getListPersona().get(pos).getApellidos();
+                String ema = dP.getListPersona().get(pos).getEmail();
+                Sexo sex = dP.getListPersona().get(pos).getSexo();
                 jTfId.setText(""+id);
                 jTfNombres.setText(nom);
                 jTfApellidos.setText(ape);
@@ -283,6 +290,33 @@ public class FrmPersona extends javax.swing.JFrame {
                     "Registros", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBtnPrimeroActionPerformed
+
+    private void jBtnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUltimoActionPerformed
+        // TODO add your handling code here:
+        if(!dP.getListPersona().isEmpty()){
+            try {
+                pos = dP.getListPersona().size() -1;
+                int id = dP.getListPersona().get(pos).getId();
+                String nom = dP.getListPersona().get(pos).getNombre();
+                String ape = dP.getListPersona().get(pos).getApellidos();
+                String ema = dP.getListPersona().get(pos).getEmail();
+                Sexo sex = dP.getListPersona().get(pos).getSexo();
+                jTfId.setText(""+id);
+                jTfNombres.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                if(sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay registros...",
+                    "Registros", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnUltimoActionPerformed
 
     private void llenarTabla() {
         DefaultTableModel tbl = new DefaultTableModel();
