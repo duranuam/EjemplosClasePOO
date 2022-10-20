@@ -13,11 +13,13 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     public dao.Usuario usuarios = new 
             dao.Usuario();
+    private int intentos=1;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null); 
     }
 
     /**
@@ -156,9 +158,19 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String user = jTfUsuario.getText();
         String pw = jPfPw.getText();
+        
+        if (intentos == 3){
+            JOptionPane.showMessageDialog(this, 
+                    "Muchos intentos. Adios");
+           System.exit(0);
+        }
         if(usuarios.autenticarUsuario(user, pw)){
-            JOptionPane.showMessageDialog(this, "ok");
+            Menu mnu = new Menu();
+            mnu.setVisible(true);
+            //this.setVisible(false);
+            dispose();
         }else{
+            intentos++;
             JOptionPane.showMessageDialog(this, "Incorrecto");
         }
     }//GEN-LAST:event_jBtnOkActionPerformed
