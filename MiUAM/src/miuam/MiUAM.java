@@ -28,6 +28,9 @@ public class MiUAM {
                 "sgonz@gmail.com");        
         Login login = new Login();
         login.usuarios= usuarios;
+        
+        System.out.println("En main "+
+                usuarios.getLista().size());
         login.setVisible(true);
     }
     
@@ -40,8 +43,11 @@ public class MiUAM {
                 "Gurdian", "carlos.gurdian@gmail.com");
         usuarios.agregar("1", "123", "Synthia", "Gonzalez", 
                 "sgonz@gmail.com"); 
+        System.out.println("En main "+
+                usuarios.getLista().size());
         Login login = new Login();
         login.usuarios= usuarios;
+        
         login.setVisible(true);
     }
 }

@@ -166,6 +166,9 @@ public class Login extends javax.swing.JFrame {
         }
         if(usuarios.autenticarUsuario(user, pw)){
             Menu mnu = new Menu();
+            System.out.println("En login"+
+                    usuarios.getLista().size());
+            mnu.setLista(usuarios);
             mnu.setVisible(true);
             //this.setVisible(false);
             dispose();
