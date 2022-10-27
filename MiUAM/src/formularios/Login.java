@@ -4,6 +4,7 @@
  */
 package formularios;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,6 +53,11 @@ public class Login extends javax.swing.JFrame {
 
         jTfUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTfUsuarioKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -59,6 +65,11 @@ public class Login extends javax.swing.JFrame {
 
         jPfPw.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPfPw.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPfPw.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jPfPwKeyReleased(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255)));
 
@@ -67,6 +78,11 @@ public class Login extends javax.swing.JFrame {
         jBtnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnOkActionPerformed(evt);
+            }
+        });
+        jBtnOk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jBtnOkKeyReleased(evt);
             }
         });
 
@@ -156,8 +172,12 @@ public class Login extends javax.swing.JFrame {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
+        validar();
+    }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void validar(){
         String user = jTfUsuario.getText();
-        String pw = jPfPw.getText();
+        String pw = String.valueOf(jPfPw.getPassword());
         
         if (intentos == 3){
             JOptionPane.showMessageDialog(this, 
@@ -165,10 +185,7 @@ public class Login extends javax.swing.JFrame {
            System.exit(0);
         }
         if(usuarios.autenticarUsuario(user, pw)){
-            Menu mnu = new Menu();
-            System.out.println("En login"+
-                    usuarios.getLista().size());
-            mnu.setLista(usuarios);
+            Menu mnu = new Menu(usuarios);
             mnu.setVisible(true);
             //this.setVisible(false);
             dispose();
@@ -176,7 +193,28 @@ public class Login extends javax.swing.JFrame {
             intentos++;
             JOptionPane.showMessageDialog(this, "Incorrecto");
         }
-    }//GEN-LAST:event_jBtnOkActionPerformed
+    }
+    
+    private void jBtnOkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jBtnOkKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_jBtnOkKeyReleased
+
+    private void jPfPwKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPfPwKeyReleased
+        // TODO add your handling code here:.
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            validar();
+        }
+    }//GEN-LAST:event_jPfPwKeyReleased
+
+    private void jTfUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTfUsuarioKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+            jPfPw.requestFocus();
+        }
+    }//GEN-LAST:event_jTfUsuarioKeyReleased
 
     /**
      * @param args the command line arguments

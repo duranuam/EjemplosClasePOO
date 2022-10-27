@@ -4,6 +4,7 @@
  */
 package formularios;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Usuario 
         extends javax.swing.JInternalFrame {
-
+    int fila=-1;
     private dao.Usuario lista = new dao.Usuario();
     
     /**
@@ -22,6 +23,12 @@ public class Usuario
     public Usuario() {
         initComponents();
         
+    }
+    
+    public Usuario(dao.Usuario user){
+        initComponents();
+        this.lista = user;
+        jTblRegistros.setModel(generarTabla());
     }
 
     /**
@@ -134,17 +141,29 @@ public class Usuario
         jBtnGuardar.setFocusable(false);
         jBtnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGuardarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnGuardar);
 
         jBtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formularios/img/editar.png"))); // NOI18N
         jBtnEditar.setToolTipText("Editar");
+        jBtnEditar.setEnabled(false);
         jBtnEditar.setFocusable(false);
         jBtnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnEditar);
 
         jBtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formularios/img/Eliminar.png"))); // NOI18N
         jBtnEliminar.setToolTipText("Eliminar}");
+        jBtnEliminar.setEnabled(false);
         jBtnEliminar.setFocusable(false);
         jBtnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -158,6 +177,16 @@ public class Usuario
 
             }
         ));
+        jTblRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTblRegistrosMousePressed(evt);
+            }
+        });
+        jTblRegistros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTblRegistrosKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTblRegistros);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,8 +222,96 @@ public class Usuario
     private void jBtnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnNuevoActionPerformed
         // TODO add your handling code here:
         limpiar();
-        jTblRegistros.setModel(generarTabla());
+        jBtnGuardar.setEnabled(true);
+        jBtnEliminar.setEnabled(false);
+        jBtnEditar.setEnabled(false);
     }//GEN-LAST:event_jBtnNuevoActionPerformed
+
+    private void jBtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGuardarActionPerformed
+        // TODO add your handling code here:
+        String id = jTfUserName.getText();
+        String pw = String.valueOf(jPfPw.getPassword());
+        String nom = jTfNombres.getText();
+        String ape = jTfApellidos.getText();
+        String ema = jTfEmail.getText();
+        lista.agregar(id, pw, nom, ape, ema);
+        limpiar();
+    }//GEN-LAST:event_jBtnGuardarActionPerformed
+
+    private void jTblRegistrosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblRegistrosMousePressed
+        // TODO add your handling code here:
+        
+        try{
+            fila = jTblRegistros.getSelectedRow();
+            String userName = lista.getLista().
+                    get(fila).getUserName();
+            String pw = lista.getLista().
+                    get(fila).getPw();
+            String nom = lista.getLista().
+                    get(fila).getNombres();
+            String ape = lista.getLista().
+                    get(fila).getApellidos();
+            String email = lista.getLista().
+                    get(fila).getEmail();
+            this.jTfUserName.setText(userName);
+            this.jPfPw.setText(pw);
+            this.jTfNombres.setText(nom);
+            this.jTfApellidos.setText(ape);
+            this.jTfEmail.setText(email);
+            this.jBtnGuardar.setEnabled(false);
+            this.jBtnEditar.setEnabled(true);
+            this.jBtnEliminar.setEnabled(true);
+            //this.jTfUserName.requestFocus();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this,
+                    "Error al Seleccionar", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jTblRegistrosMousePressed
+
+    private void ubicarTxt(){
+        fila = jTblRegistros.getSelectedRow();
+            String userName = lista.getLista().
+                    get(fila).getUserName();
+            String pw = lista.getLista().
+                    get(fila).getPw();
+            String nom = lista.getLista().
+                    get(fila).getNombres();
+            String ape = lista.getLista().
+                    get(fila).getApellidos();
+            String email = lista.getLista().
+                    get(fila).getEmail();
+            this.jTfUserName.setText(userName);
+            this.jPfPw.setText(pw);
+            this.jTfNombres.setText(nom);
+            this.jTfApellidos.setText(ape);
+            this.jTfEmail.setText(email);
+            this.jBtnGuardar.setEnabled(false);
+            this.jBtnEditar.setEnabled(true);
+            this.jBtnEliminar.setEnabled(true);
+            //this.jTfUserName.requestFocus();
+    }
+    private void jTblRegistrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTblRegistrosKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_DOWN || 
+                evt.getKeyCode() == KeyEvent.VK_UP){
+            ubicarTxt();
+        }
+    }//GEN-LAST:event_jTblRegistrosKeyReleased
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        // TODO add your handling code here:
+        String id = jTfUserName.getText();
+        String pw = String.valueOf(jPfPw.getPassword());
+        String nom = jTfNombres.getText();
+        String ape = jTfApellidos.getText();
+        String ema = jTfEmail.getText();
+        lista.editar(id, pw, nom, ape, ema);
+        jBtnGuardar.setEnabled(true);
+        jBtnEditar.setEnabled(false);
+        jBtnEliminar.setEnabled(false);
+        limpiar();
+    }//GEN-LAST:event_jBtnEditarActionPerformed
 
     private void limpiar(){
         jTfUserName.setText("");
@@ -202,6 +319,7 @@ public class Usuario
         jTfNombres.setText("");
         jTfApellidos.setText("");
         jTfEmail.setText("");
+        jTblRegistros.setModel(generarTabla());
         jTfUserName.requestFocus();
     }
     /**
@@ -277,7 +395,7 @@ public class Usuario
             dtm.setColumnIdentifiers(titulos);
             Object fila[] = new Object[3];
             int i=0;
-            System.out.println(lista.getLista().size());
+            
             while(i < lista.getLista().size()){
                 fila[0] = lista.getLista().get(i).getUserName();
                 fila[1] = lista.getLista().get(i).getNombres() +
