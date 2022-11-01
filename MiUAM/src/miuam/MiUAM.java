@@ -6,6 +6,7 @@ package miuam;
 
 import dao.Usuario;
 import formularios.Login;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,12 +26,21 @@ public class MiUAM {
         usuarios.agregar("21011522","147" ,"Carlos", 
                 "Gurdian", "carlos.gurdian@gmail.com");
         usuarios.agregar("1", "123", "Synthia", "Gonzalez", 
-                "sgonz@gmail.com");        
-        Login login = new Login();
-        login.usuarios= usuarios;
+                "sgonz@gmail.com");
+
+        ArrayList<Object> newLista=
+                new ArrayList<>();
+        newLista = usuarios.buscarXNombre("s");
         
+        for(Object u : newLista){
+            System.out.println(u);
+        }
         
-        login.setVisible(true);
+//        Login login = new Login();
+//        login.usuarios= usuarios;
+//        
+//        
+//        login.setVisible(true);
     }
     
     public void llenarUsuario(){

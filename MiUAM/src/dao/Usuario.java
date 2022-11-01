@@ -64,4 +64,16 @@ public class Usuario {
         }
         return false;
     }
+    
+    public ArrayList buscarXNombre(String valor){
+        ArrayList<modelos.Usuario> resultado = 
+                new ArrayList<>();
+        for(modelos.Usuario usuario : this.lista){
+            if(usuario.getNombres().toUpperCase().
+                    startsWith(valor.toUpperCase())){
+                resultado.add(usuario);
+            }
+        }
+        return resultado;
+    }
 }

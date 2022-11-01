@@ -56,6 +56,10 @@ public class Usuario
         jBtnGuardar = new javax.swing.JButton();
         jBtnEditar = new javax.swing.JButton();
         jBtnEliminar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jLabel6 = new javax.swing.JLabel();
+        jTfValor = new javax.swing.JTextField();
+        jBtnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTblRegistros = new javax.swing.JTable();
 
@@ -173,6 +177,20 @@ public class Usuario
             }
         });
         jToolBar1.add(jBtnEliminar);
+        jToolBar1.add(jSeparator1);
+
+        jLabel6.setText("Buscar por nombres:");
+        jToolBar1.add(jLabel6);
+
+        jTfValor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jToolBar1.add(jTfValor);
+
+        jBtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/formularios/img/buscar.png"))); // NOI18N
+        jBtnBuscar.setToolTipText("Buscar");
+        jBtnBuscar.setFocusable(false);
+        jBtnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jBtnBuscar);
 
         jTblRegistros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,8 +231,8 @@ public class Usuario
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -370,6 +388,7 @@ public class Usuario
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnEliminar;
     private javax.swing.JButton jBtnGuardar;
@@ -379,14 +398,17 @@ public class Usuario
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPfPw;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JTable jTblRegistros;
     private javax.swing.JTextField jTfApellidos;
     private javax.swing.JTextField jTfEmail;
     private javax.swing.JTextField jTfNombres;
     private javax.swing.JTextField jTfUserName;
+    private javax.swing.JTextField jTfValor;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
