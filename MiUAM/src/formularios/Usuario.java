@@ -167,6 +167,11 @@ public class Usuario
         jBtnEliminar.setFocusable(false);
         jBtnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEliminarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnEliminar);
 
         jTblRegistros.setModel(new javax.swing.table.DefaultTableModel(
@@ -312,6 +317,12 @@ public class Usuario
         jBtnEliminar.setEnabled(false);
         limpiar();
     }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
+        // TODO add your handling code here:
+        lista.eliminarUsuario(jTfUserName.getText());
+        limpiar();
+    }//GEN-LAST:event_jBtnEliminarActionPerformed
 
     private void limpiar(){
         jTfUserName.setText("");

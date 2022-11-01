@@ -46,6 +46,16 @@ public class Usuario {
         }
     }
     
+    public boolean eliminarUsuario(String userName){
+        for (modelos.Usuario usuario : this.lista){
+            if(usuario.existe(userName)){
+                this.lista.remove(usuario);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public boolean autenticarUsuario(String user,
             String pw){
         for(modelos.Usuario us: this.lista){
