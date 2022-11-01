@@ -5,6 +5,7 @@
 package formularios;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -190,6 +191,11 @@ public class Usuario
         jBtnBuscar.setFocusable(false);
         jBtnBuscar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnBuscar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnBuscarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnBuscar);
 
         jTblRegistros.setModel(new javax.swing.table.DefaultTableModel(
@@ -341,6 +347,15 @@ public class Usuario
         lista.eliminarUsuario(jTfUserName.getText());
         limpiar();
     }//GEN-LAST:event_jBtnEliminarActionPerformed
+
+    private void jBtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnBuscarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Object> newLista=
+                new ArrayList<>();
+        String valor = this.jTfValor.getText();
+        newLista = lista.buscarXNombre(valor);
+             
+    }//GEN-LAST:event_jBtnBuscarActionPerformed
 
     private void limpiar(){
         jTfUserName.setText("");

@@ -69,8 +69,9 @@ public class Usuario {
         ArrayList<modelos.Usuario> resultado = 
                 new ArrayList<>();
         for(modelos.Usuario usuario : this.lista){
-            if(usuario.getNombres().toUpperCase().
-                    startsWith(valor.toUpperCase())){
+            String userN = usuario.getNombres().toUpperCase()
+                    +  " " +usuario.getApellidos().toUpperCase();
+            if(userN.startsWith(valor.toUpperCase())){
                 resultado.add(usuario);
             }
         }

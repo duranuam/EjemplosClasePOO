@@ -28,19 +28,9 @@ public class MiUAM {
         usuarios.agregar("1", "123", "Synthia", "Gonzalez", 
                 "sgonz@gmail.com");
 
-        ArrayList<Object> newLista=
-                new ArrayList<>();
-        newLista = usuarios.buscarXNombre("s");
-        
-        for(Object u : newLista){
-            System.out.println(u);
-        }
-        
-//        Login login = new Login();
-//        login.usuarios= usuarios;
-//        
-//        
-//        login.setVisible(true);
+        Login login = new Login();
+        login.usuarios= usuarios;
+        login.setVisible(true);
     }
     
     public void llenarUsuario(){
