@@ -19,33 +19,13 @@ public class MiUAM {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Usuario usuarios = new Usuario();
-        usuarios.agregar("18020323", "123", 
-                "Carlos", "Cerda", 
-                "carlos.cerda@uamv.edu.ni");
-        usuarios.agregar("21011522","147" ,"Carlos", 
-                "Gurdian", "carlos.gurdian@gmail.com");
-        usuarios.agregar("1", "123", "Synthia", "Gonzalez", 
-                "sgonz@gmail.com");
-
+        
+        dao.Usuario usuarios = new dao.Usuario();
         Login login = new Login();
         login.usuarios= usuarios;
         login.setVisible(true);
     }
     
-    public void llenarUsuario(){
-        Usuario usuarios = new Usuario();
-        usuarios.agregar("18020323", "123", 
-                "Carlos", "Cerda", 
-                "carlos.cerda@uamv.edu.ni");
-        usuarios.agregar("21011522","147" ,"Carlos", 
-                "Gurdian", "carlos.gurdian@gmail.com");
-        usuarios.agregar("1", "123", "Synthia", "Gonzalez", 
-                "sgonz@gmail.com"); 
-        
-        Login login = new Login();
-        login.usuarios= usuarios;
-        
-        login.setVisible(true);
-    }
+   
+    
 }
