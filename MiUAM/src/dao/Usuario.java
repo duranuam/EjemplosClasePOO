@@ -101,4 +101,24 @@ public class Usuario extends Conexion{
             System.out.println(ex.getMessage());
         }
     }
+    
+    public boolean guardarRegistro(modelos.Usuario u){
+        boolean ok = false;
+        try{
+            String tSQL = "Insert into Usuario("
+                    + "userName, Pw, Nombres, Apellidos, Email)"
+                    + "values(?, ?, ?, ?, ?)";
+            st = conn.prepareStatement(tSQL);
+            st.setString(1, u.getUserName());
+            st.setString(2, u.getPw());
+            st.setString(3, u.getNombres());
+            st.setString(4, u.getApellidos());
+            st.setString(5, u.getEmail());
+            //if()
+            
+        }catch(Exception ex){
+            
+        }
+        return ok;
+    }
 }
