@@ -12,9 +12,11 @@ import java.sql.*;
  * @author labc205
  */
 public class Usuario extends Conexion{
-    private ResultSet rs ;
-    private Statement st;
     private Connection conn = this.obtenerConexion();
+    private PreparedStatement st = null;
+    private ResultSet rs ;
+    
+    
     
     private ArrayList<modelos.Usuario> lista 
             = new ArrayList<>();
@@ -86,7 +88,8 @@ public class Usuario extends Conexion{
     public void obtenerRegistros(){
         String tSQL = "Select * from Usuario";
         try{
-            rs = st.executeQuery(tSQL);
+            st = conn.prepareStatement(tSQL);
+            rs = st.executeQuery();
             while(rs.next()){
                 this.agregar(rs.getString("userName"), 
                         rs.getString("pw"), 
